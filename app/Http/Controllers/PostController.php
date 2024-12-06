@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -56,11 +57,21 @@ class PostController extends Controller
                 'post_id' => $index
             ]);
         }
-
-
-        // return Inertia::render('PostComponent', [
-        //     'liked' => $liked
-        // ]);
         
+    }
+
+    public function comment($index, Request $request){
+        $user = Auth::user()->id;
+
+        $request->validate([
+            'content' => 'required | string',
+        ]);
+
+        Comment::create([
+            'user_id' => $user,
+            'content' => $request->content,
+            'post_id' => $index
+        ]);
+
     }
 }

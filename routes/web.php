@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts/edit/{index}', [PostController::class, 'edit'])->name('posts.edit');
     Route::post('/posts/store', [PostController::class, 'store'])->name('posts.store');
     Route::post('/posts/{index}/like', [PostController::class, 'like'])->name('posts.like');
+    Route::post('/posts/{index}/comment', [PostController::class, 'comment'])->name('posts.comment');
 
 });
 

@@ -65,7 +65,7 @@ const likePost = () => {
                 </div>
                 <!-- Comment -->
                 <div class=" items-center flex gap-1">
-                    <CommentModal />
+                    <CommentModal :post="post"/>
                     <p>{{ countComment }}</p>
                 </div>
             </div>

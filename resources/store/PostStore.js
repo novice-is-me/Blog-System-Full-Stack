@@ -2,11 +2,12 @@ import { defineStore } from 'pinia'
 
 export const usePostStore = defineStore('post', {
     state: () => ({
-        countLike: 0,
+        comments: [],
     }),
-    actions: {
-        getCountLike(data){
-            this.countLike = data
+    getters: {
+        getComments(){
+            return this.comments
         }
-    }
+    },
+
 })

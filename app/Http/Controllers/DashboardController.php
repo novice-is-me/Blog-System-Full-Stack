@@ -13,15 +13,15 @@ class DashboardController extends Controller
     // This is the dashboard as well as the table. 
     public function index(){
 
-        $posts = Post::with('user')->withCount('likes')->get();
+        $posts = Post::with('user', 'comments.user')->withCount('likes')->get();
         // Get all the likes for each post
-
-        $likes = Post::withCount('likes')->get();
         
+        // $comments = Post::with('comments')->get();
 
+        // dd($comments);
         return Inertia::render('Dashboard', [
             'posts' => $posts,
-            'likes' => $likes
+            // // 'likes' => $likes,s
         ]);
     }
 
