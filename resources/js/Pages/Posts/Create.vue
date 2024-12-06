@@ -1,6 +1,18 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
+import { useToast } from 'vue-toast-notification';
+
+const toast = useToast();
+const form = useForm({
+    content: "",
+})
+
+const createPost = () => {
+    console.log('Post Created');
+    form.post(route('posts.store'));
+    toast.success('Post Created Successfully');
+}
 
 </script>
 
@@ -36,17 +48,20 @@ import { Head } from '@inertiajs/vue3';
                     </label>
                     
                     <div class="mt-2 space-y-3">
-                        <textarea type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"> </textarea>
+                        <textarea 
+                            v-model="form.content"
+                            type="text" 
+                            class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"> </textarea>
                     </div>
                 </div>
                 <!-- End Section -->
             </form>
             
             <div class="mt-5 flex justify-end gap-x-2">
-                <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                <a :href="route('dashboard')" type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
                     Cancel
-                </button>
-                <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+                </a>
+                <button @click.prevent="createPost" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
                     Post
                 </button>
             </div>

@@ -13,7 +13,7 @@ class DashboardController extends Controller
     // This is the dashboard as well as the table. 
     public function index(){
 
-        $posts = Post::all();
+        $posts = Post::with('user')->get();
 
         return Inertia::render('Dashboard', [
             'posts' => $posts

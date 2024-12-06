@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     //
-    protected $fillable = ['content'];
+    protected $fillable = ['content', 'user_id'];
 
     // A post belongs to a user
     public function user(){

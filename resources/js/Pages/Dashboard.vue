@@ -3,13 +3,14 @@ import PostSection from '@/Components/PostSection.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 
-defineProps({
+const props = defineProps({
     posts: {
         type: Object,
         required: true,
     }
 })
 
+console.log(props.posts);
 </script>
 
 <template>
@@ -26,7 +27,7 @@ defineProps({
     
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <PostSection :posts="posts"/>
+            <PostSection :posts="props.posts"/>
         </div>
     </div>
     </AuthenticatedLayout>

@@ -3,12 +3,14 @@ import { Link } from '@inertiajs/vue3';
 import PostComponent from './PostComponent.vue';
 
 
-defineProps({
+const props = defineProps({
     posts: {
         type: Object,
         required: true,
     }
 })
+
+console.log(props.posts);
 
 </script>
 
@@ -22,8 +24,8 @@ defineProps({
         </Link>
     </div>
     <div>
-        <ul v-if="posts.data && posts.data.length != 0 ">
-            <li v-for="post in posts.data" :key="post.id">
+        <ul v-if="posts && posts.length != 0 ">
+            <li v-for="post in posts" :key="post.id">
                 <PostComponent :post="post" />
             </li>
         </ul>
