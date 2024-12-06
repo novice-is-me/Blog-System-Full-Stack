@@ -1,6 +1,6 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
-import PostComponent from './PostComponent.vue';
+import PostComponent from '../Pages/PostComponent.vue';
 
 
 const props = defineProps({

@@ -36,4 +36,31 @@ class PostController extends Controller
             'index' => $index
         ]);
     }
+
+    public function like($index){
+        // Ge the user Id
+        $user = Auth::user()->id;
+
+        // Get the post based on the index
+        $post = Post::find($index);
+
+        $liked = $post->likes()->where('user_id', $user)->exists();
+
+        if($post->likes()->where('user_id', $user)->exists()){
+            // Remove the relationship
+            $post->likes()->where('user_id', $user)->delete();
+        }else{
+            // Create the relationship
+            $post->likes()->create([
+                'user_id' => $user,
+                'post_id' => $index
+            ]);
+        }
+
+
+        // return Inertia::render('PostComponent', [
+        //     'liked' => $liked
+        // ]);
+        
+    }
 }
