@@ -2,15 +2,24 @@
 import PostSection from '@/Components/PostSection.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import { useUserStore } from '../../store/userStore';
 
 const props = defineProps({
     posts: {
         type: Object,
         required: true,
+    },
+    user: {
+        type: Object,
+        required: true,
     }
+
 })
 
-console.log(props.posts);
+// setting the user details to the user store
+const userStore = useUserStore();
+userStore.setUser(props.user);
+
 </script>
 
 <template>

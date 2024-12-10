@@ -1,10 +1,16 @@
 <script setup>
 import { Inertia } from '@inertiajs/inertia';
 import { useForm } from '@inertiajs/inertia-vue3';
-import { comment } from 'postcss';
+import { useUserStore } from '../../store/userStore';
 import { ref } from 'vue';
 
 const modalOpen = ref(false);
+
+// For checking if admin
+
+const userStore = useUserStore();
+const isAdmin = userStore.isAdmin;
+console.log('isadmin', isAdmin);
 
 const props = defineProps({
     post: {
@@ -84,7 +90,7 @@ console.log(props.post.comments);
                                             <p class=" text-sm text-gray-500">{{ formatDate(comment.user.created_at) }}</p>
                                         </div>
                                         <p class="mt-2 text-gray-800">{{ comment.content}}</p>
-                                        <button class=" bg-red-300 px-2 py-1 rounded mt-4" @click.prevent="deleteComment(comment.id)">Delete this post</button>
+                                        <button v-if="isAdmin" class=" bg-red-300 px-2 py-1 rounded mt-4" @click.prevent="deleteComment(comment.id)">Delete this post</button>
                                     </div>
                                 </li>
                             </ul>
