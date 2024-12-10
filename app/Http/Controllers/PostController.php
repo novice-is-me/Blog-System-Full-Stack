@@ -74,4 +74,9 @@ class PostController extends Controller
         ]);
 
     }
+
+    public function delete($index){
+        $post = Comment::find($index);
+        $post->delete();
+    }
 }

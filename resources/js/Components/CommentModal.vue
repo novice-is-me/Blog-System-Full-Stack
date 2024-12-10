@@ -33,6 +33,11 @@ const formatDate = (date) => {
     return new Date(date).toLocaleDateString();
 }
 
+const deleteComment = (commentId) => {
+    alert('Are you sure you want to delete this comment?');
+    Inertia.delete(route('posts.delete', { index: commentId }))
+}
+
 console.log(props.post.comments);
 
 </script>
@@ -79,6 +84,7 @@ console.log(props.post.comments);
                                             <p class=" text-sm text-gray-500">{{ formatDate(comment.user.created_at) }}</p>
                                         </div>
                                         <p class="mt-2 text-gray-800">{{ comment.content}}</p>
+                                        <button class=" bg-red-300 px-2 py-1 rounded mt-4" @click.prevent="deleteComment(comment.id)">Delete this post</button>
                                     </div>
                                 </li>
                             </ul>
