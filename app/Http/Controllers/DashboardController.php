@@ -13,7 +13,7 @@ class DashboardController extends Controller
     // This is the dashboard as well as the table. 
     public function index(){
 
-        $posts = Post::with('user', 'comments.user')->withCount('likes')->get();
+        $posts = Post::with('user', 'comments.user')->withCount('likes', 'comments')->get();
         // Get all the likes for each post
         
         // $comments = Post::with('comments')->get();
